@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Mobile_Access_Control</string>
+
+    <!-- Drawer 메뉴 항목 라벨 (AppShell.kt) -->
+    <string name="shell_destination_scan">검문</string>
+    <string name="shell_destination_register">카드 등록</string>
+    <string name="shell_destination_history">히스토리</string>
+    <string name="shell_destination_stats">통계</string>
+
+    <!-- TopBar 전역 액션 (AppShell.kt) — 배지/카운트 라벨은 :feature:common (OfflineBadge/SyncAction) 로 이동 -->
+    <string name="topbar_sync_confirm_title">지금 동기화하시겠습니까?</string>
+    <string name="topbar_sync_confirm_message">대기 중인 오프라인 검문 기록을 서버로 전송하고 마스터 데이터를 최신으로 갱신합니다.</string>
+    <string name="topbar_sync_confirm_action">동기화</string>
+    <string name="topbar_sync_confirm_dismiss">취소</string>
+    <string name="topbar_sync_offline_title">오프라인 상태</string>
+    <string name="topbar_sync_offline_message">네트워크가 끊어져 지금은 동기화할 수 없습니다. 네트워크가 복구되면 미전송 기록이 자동으로 전송됩니다.</string>
+
+    <!-- 스낵바 알림 (AppShell.kt) -->
+    <string name="shell_snackbar_flush_succeeded">오프라인 기록 전송 완료</string>
+    <string name="shell_snackbar_flush_failed">오프라인 기록 전송 실패</string>
+    <string name="shell_snackbar_queue_overflow">대기 기록이 한도를 초과해 오래된 항목이 삭제되었습니다</string>
+    <string name="shell_snackbar_queue_dead_letter">일부 기록이 전송에 반복 실패해 삭제되었습니다</string>
+</resources>

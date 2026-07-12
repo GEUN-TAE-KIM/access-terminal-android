@@ -1,0 +1,43 @@
+<resources>
+    <!-- 단말 zone 선택 (Phase 12) -->
+    <string name="scan_zone_label">검문 구역</string>
+    <string name="scan_zone_unselected">미설정</string>
+    <string name="scan_zone_change">변경</string>
+    <string name="scan_zone_picker_title">검문 구역 선택</string>
+    <string name="scan_zone_picker_empty">서버에서 구역 목록을 받지 못했습니다. master 동기화 후 다시 시도해 주세요.</string>
+    <string name="scan_zone_picker_cancel">취소</string>
+
+    <!-- 랜딩 영역 -->
+    <string name="scan_landing_instruction">카드 스캔을 시작하려면 아래 버튼을 눌러주세요</string>
+    <string name="scan_button_start">카드 스캔</string>
+
+    <!-- 검문 플로우 다이얼로그 -->
+    <string name="scan_dialog_title_prompting">카드를 대주세요</string>
+    <string name="scan_dialog_title_resolving">인식 중</string>
+    <string name="scan_dialog_body_prompting">NFC 영역에 카드를 가까이 대주세요</string>
+    <string name="scan_dialog_body_resolving">카드를 떼지 말고 잠시 그대로 대주세요</string>
+    <string name="scan_result_employee_code">사번 %1$s</string>
+    <string name="scan_result_valid_until">유효기간 %1$s</string>
+    <string name="scan_result_deny_reason_unknown">알 수 없는 사유</string>
+
+    <!-- Debug-only Mock 패널 (release 미노출이지만 일관성 위해 res 로 분리) -->
+    <string name="scan_mock_panel_open">Mock 패널 열기</string>
+    <string name="scan_mock_panel_close">Mock 패널 닫기</string>
+    <string name="scan_mock_start">Mock 검문 시작</string>
+
+    <!-- Error mapper — scan 화면 한정 메시지 -->
+    <string name="scan_error_nfc_not_supported_message">이 기기는 NFC를 지원하지 않아 본 앱을 사용할 수 없습니다.</string>
+    <string name="scan_error_nfc_unreadable_message">이 카드 형식은 지원되지 않습니다. 사원증을 확인해 주세요.</string>
+    <string name="scan_error_card_not_registered_title">등록되지 않은 카드</string>
+    <string name="scan_error_card_not_registered_message">이 카드는 시스템에 등록되어 있지 않습니다. 관리자에게 문의해 주세요.</string>
+    <string name="scan_error_replay_title">다시 시도해 주세요</string>
+    <string name="scan_error_replay_message">중복 요청이 감지되었습니다. 카드를 다시 대주세요.</string>
+    <string name="scan_error_clock_skew_title">단말 시각 오류</string>
+    <string name="scan_error_clock_skew_message">단말 시각이 서버와 어긋났습니다. 시각을 자동(NTP)으로 설정해 주세요.</string>
+    <string name="scan_error_idempotency_title">요청 충돌</string>
+    <string name="scan_error_idempotency_message">동일 요청 처리 중 충돌이 발생했습니다. 잠시 후 다시 시도해 주세요.</string>
+    <string name="scan_error_invalid_card_type_title">지원되지 않는 카드</string>
+    <string name="scan_error_invalid_card_type_message">지원하지 않는 카드 타입입니다.</string>
+    <string name="scan_error_validation_title">요청 오류</string>
+    <string name="scan_error_verify_failed_title">검증 실패</string>
+</resources>

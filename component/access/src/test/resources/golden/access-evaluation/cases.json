@@ -1,0 +1,151 @@
+{
+  "$comment": "Drift detection between client LocalAccessVerifier and server PermissionEvaluator. Each case provides identical input + expected AccessResult enum name. Both repos run the same cases against their own evaluator. (hybrid-offline.md §2.3 / api-spec §8.1 raw-fields policy)",
+  "$note_validFrom": "permissions[].validFrom is intentionally absent from wire (api-spec §8.1) — server PermissionEvaluator no longer checks it; row is included in snapshot only when is_active=TRUE.",
+  "cases": [
+    {
+      "name": "EMP001 — 정상 사용자, GATE-A 무기한 권한",
+      "input": {
+        "atIso": "2026-05-25T03:00:00Z",
+        "zone": "GATE-A",
+        "card": { "isActive": true },
+        "user": { "isActive": true },
+        "permissions": [
+          { "zone": "GATE-A", "validUntil": null, "allowedHoursStart": null, "allowedHoursEnd": null }
+        ]
+      },
+      "expected": "ALLOWED"
+    },
+    {
+      "name": "EMP002 — GATE-B 권한만, GATE-A 검문 → NO_PERMISSION",
+      "input": {
+        "atIso": "2026-05-25T03:00:00Z",
+        "zone": "GATE-A",
+        "card": { "isActive": true },
+        "user": { "isActive": true },
+        "permissions": [
+          { "zone": "GATE-B", "validUntil": null, "allowedHoursStart": null, "allowedHoursEnd": null }
+        ]
+      },
+      "expected": "DENIED_NO_PERMISSION"
+    },
+    {
+      "name": "EMP003 — 퇴사 사용자 → INACTIVE_USER",
+      "input": {
+        "atIso": "2026-05-25T03:00:00Z",
+        "zone": "GATE-A",
+        "card": { "isActive": true },
+        "user": { "isActive": false },
+        "permissions": [
+          { "zone": "GATE-A", "validUntil": null, "allowedHoursStart": null, "allowedHoursEnd": null }
+        ]
+      },
+      "expected": "DENIED_INACTIVE_USER"
+    },
+    {
+      "name": "EMP004 — JST 09:00~18:00 권한, JST 12:00 검문 (UTC 03:00) → ALLOWED",
+      "input": {
+        "atIso": "2026-05-25T03:00:00Z",
+        "zone": "GATE-A",
+        "card": { "isActive": true },
+        "user": { "isActive": true },
+        "permissions": [
+          { "zone": "GATE-A", "validUntil": null, "allowedHoursStart": "09:00:00", "allowedHoursEnd": "18:00:00" }
+        ]
+      },
+      "expected": "ALLOWED"
+    },
+    {
+      "name": "EMP004 — JST 09:00~18:00 권한, JST 08:59 검문 (UTC 23:59 전날) → OUT_OF_HOURS",
+      "input": {
+        "atIso": "2026-05-24T23:59:00Z",
+        "zone": "GATE-A",
+        "card": { "isActive": true },
+        "user": { "isActive": true },
+        "permissions": [
+          { "zone": "GATE-A", "validUntil": null, "allowedHoursStart": "09:00:00", "allowedHoursEnd": "18:00:00" }
+        ]
+      },
+      "expected": "DENIED_OUT_OF_HOURS"
+    },
+    {
+      "name": "EMP004 — JST 09:00~18:00 권한, JST 18:00 검문 (UTC 09:00) → OUT_OF_HOURS (end exclusive)",
+      "input": {
+        "atIso": "2026-05-25T09:00:00Z",
+        "zone": "GATE-A",
+        "card": { "isActive": true },
+        "user": { "isActive": true },
+        "permissions": [
+          { "zone": "GATE-A", "validUntil": null, "allowedHoursStart": "09:00:00", "allowedHoursEnd": "18:00:00" }
+        ]
+      },
+      "expected": "DENIED_OUT_OF_HOURS"
+    },
+    {
+      "name": "EMP005 — 카드 분실 (isActive=false) → INACTIVE_CARD",
+      "input": {
+        "atIso": "2026-05-25T03:00:00Z",
+        "zone": "GATE-A",
+        "card": { "isActive": false },
+        "user": { "isActive": true },
+        "permissions": [
+          { "zone": "GATE-A", "validUntil": null, "allowedHoursStart": null, "allowedHoursEnd": null }
+        ]
+      },
+      "expected": "DENIED_INACTIVE_CARD"
+    },
+    {
+      "name": "validUntil 직전 1초 → ALLOWED",
+      "input": {
+        "atIso": "2026-05-25T02:59:59Z",
+        "zone": "GATE-A",
+        "card": { "isActive": true },
+        "user": { "isActive": true },
+        "permissions": [
+          { "zone": "GATE-A", "validUntil": "2026-05-25T03:00:00Z", "allowedHoursStart": null, "allowedHoursEnd": null }
+        ]
+      },
+      "expected": "ALLOWED"
+    },
+    {
+      "name": "validUntil 정각 → EXPIRED (end exclusive)",
+      "input": {
+        "atIso": "2026-05-25T03:00:00Z",
+        "zone": "GATE-A",
+        "card": { "isActive": true },
+        "user": { "isActive": true },
+        "permissions": [
+          { "zone": "GATE-A", "validUntil": "2026-05-25T03:00:00Z", "allowedHoursStart": null, "allowedHoursEnd": null }
+        ]
+      },
+      "expected": "DENIED_EXPIRED"
+    },
+    {
+      "name": "허가 권한이 여럿 — 가장 관대한 validUntil (무기한 우선) 채택",
+      "input": {
+        "atIso": "2026-05-25T03:00:00Z",
+        "zone": "GATE-A",
+        "card": { "isActive": true },
+        "user": { "isActive": true },
+        "permissions": [
+          { "zone": "GATE-A", "validUntil": "2027-01-01T00:00:00Z", "allowedHoursStart": null, "allowedHoursEnd": null },
+          { "zone": "GATE-A", "validUntil": null, "allowedHoursStart": null, "allowedHoursEnd": null }
+        ]
+      },
+      "expected": "ALLOWED",
+      "expectedValidUntil": null
+    },
+    {
+      "name": "유효기간 통과한 권한은 없고 만료된 GATE-A 권한만 → EXPIRED (시간대 평가는 도달하지 않음)",
+      "input": {
+        "atIso": "2026-05-25T03:00:00Z",
+        "zone": "GATE-A",
+        "card": { "isActive": true },
+        "user": { "isActive": true },
+        "permissions": [
+          { "zone": "GATE-A", "validUntil": "2026-01-01T00:00:00Z", "allowedHoursStart": "09:00:00", "allowedHoursEnd": "18:00:00" }
+        ]
+      },
+      "expected": "DENIED_EXPIRED"
+    }
+  ]
+}

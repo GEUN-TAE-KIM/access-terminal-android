@@ -1,0 +1,8 @@
+<resources>
+    <string name="nfc_error_not_supported">이 단말에서 NFC를 지원하지 않습니다.</string>
+    <string name="nfc_error_disabled">NFC가 꺼져있습니다.</string>
+    <string name="nfc_error_timeout">카드 인식 시간이 초과되었습니다.</string>
+    <string name="nfc_error_unreadable_tag">지원되지 않는 카드 종류입니다.</string>
+    <string name="nfc_error_tag_lost">카드가 너무 빨리 떨어졌습니다. 잠시 그대로 대주세요.</string>
+    <string name="nfc_error_io">NFC 통신 중 오류가 발생했습니다.</string>
+</resources>

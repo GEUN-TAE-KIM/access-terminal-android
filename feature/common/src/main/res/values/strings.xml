@@ -1,0 +1,55 @@
+<resources>
+    <!-- 공통 액션 -->
+    <string name="common_confirm">확인</string>
+    <string name="common_cancel">취소</string>
+    <string name="common_select">선택</string>
+    <string name="common_reset">초기화</string>
+
+    <!-- 공통 결과 라벨 -->
+    <string name="common_allowed">허용</string>
+    <string name="common_denied">거부</string>
+    <string name="common_unknown">알 수 없음</string>
+
+    <!-- 셸 (Drawer / TopBar) -->
+    <string name="drawer_header">Mobile Access Control</string>
+    <string name="drawer_logout">로그아웃</string>
+    <string name="topbar_open_menu">메뉴 열기</string>
+    <string name="topbar_offline_badge">오프라인</string>
+    <string name="topbar_sync_action">동기화</string>
+
+    <!-- 거부 사유 라벨 (3개 feature 가 모두 같은 라벨 사용 — scan / history / stats) -->
+    <string name="deny_reason_no_permission_for_zone">구역 권한 없음</string>
+    <string name="deny_reason_out_of_allowed_hours">허용 시간 외</string>
+    <string name="deny_reason_permission_expired">권한 만료</string>
+    <string name="deny_reason_card_revoked">사용 중지된 카드</string>
+    <string name="deny_reason_user_inactive">비활성 사용자</string>
+    <string name="deny_reason_card_not_registered">미등록 카드</string>
+    <string name="deny_reason_unknown">알 수 없는 사유</string>
+
+    <!-- 에러 매퍼 공용 — 5개 feature 에서 동일하게 사용 -->
+    <string name="error_title_generic">오류</string>
+    <string name="error_message_unknown">알 수 없는 오류가 발생했습니다.</string>
+    <string name="error_title_session_expired">세션 만료</string>
+    <string name="error_title_no_connection">네트워크 오류</string>
+    <string name="error_title_timeout">시간 초과</string>
+    <string name="error_title_server">서버 오류</string>
+    <string name="error_title_forbidden">권한 없음</string>
+    <string name="error_title_rate_limited">잠시 후 다시 시도</string>
+    <string name="error_title_validation_query">조회 조건 오류</string>
+
+    <!-- 에러 매퍼 확인 버튼 라벨 -->
+    <string name="error_button_reauthenticate">다시 로그인</string>
+    <string name="error_button_open_settings">설정 열기</string>
+
+    <!-- NFC 에러 — scan / register 가 동일 -->
+    <string name="error_nfc_title_disabled">NFC 꺼짐</string>
+    <string name="error_nfc_message_disabled">NFC가 비활성화되어 있습니다. 설정에서 활성화해 주세요.</string>
+    <string name="error_nfc_title_timeout">시간 초과</string>
+    <string name="error_nfc_message_timeout">카드 인식이 너무 오래 걸렸습니다. 카드를 단말에 정확히 대주세요.</string>
+    <string name="error_nfc_title_tag_lost">카드를 너무 빨리 떼셨습니다</string>
+    <string name="error_nfc_message_tag_lost">인식 중에는 카드를 단말에 잠시 그대로 대주세요. 다시 시도하시면 됩니다.</string>
+    <string name="error_nfc_title_io">카드 통신 오류</string>
+    <string name="error_nfc_message_io">카드 통신 중 문제가 발생했습니다. 카드를 떼었다가 다시 대주세요.</string>
+    <string name="error_nfc_title_not_supported">NFC 미지원</string>
+    <string name="error_nfc_title_unreadable">지원되지 않는 카드</string>
+</resources>

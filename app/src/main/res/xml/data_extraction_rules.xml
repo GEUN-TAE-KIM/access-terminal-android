@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Data extraction 규칙 (API 31+ — android:dataExtractionRules).
+  보안 출입 단말 앱: 자격증명과 캐시된 출입권한은 클라우드 백업·기기 간 이전 양쪽에서 제외한다.
+-->
+<data-extraction-rules>
+    <cloud-backup>
+        <!-- 인증 토큰 (DataStore, AES-GCM 암호문) — 클라우드 백업 제외. -->
+        <exclude
+            domain="file"
+            path="datastore" />
+        <!-- 마스터 캐시 + 오프라인 큐 Room DB — 클라우드 백업 제외. -->
+        <exclude
+            domain="database"
+            path="access.db" />
+    </cloud-backup>
+    <device-transfer>
+        <!-- 기기 간 이전(D2D) 시에도 자격증명·출입권한 캐시는 새 단말에서 재발급/재동기화한다. -->
+        <exclude
+            domain="file"
+            path="datastore" />
+        <exclude
+            domain="database"
+            path="access.db" />
+    </device-transfer>
+</data-extraction-rules>

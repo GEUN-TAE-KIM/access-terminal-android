@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Debug 빌드 전용 manifest. 빌드 시스템이 src/main/AndroidManifest.xml 과 merge 한다.
+
+    여기서는 application 태그에 networkSecurityConfig 속성만 추가해 debug 빌드에서만
+    cleartext (HTTP) 호출을 허용한다. release 빌드는 본 파일을 포함하지 않으므로
+    Android 9+ 기본값 (cleartextTrafficPermitted=false) 가 그대로 유지된다.
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:networkSecurityConfig="@xml/network_security_config"
+        tools:replace="android:networkSecurityConfig" />
+
+</manifest>

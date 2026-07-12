@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Auto Backup 규칙 (API 30 이하 — android:fullBackupContent).
+  보안 출입 단말 앱: 자격증명과 캐시된 출입권한은 백업·복원 대상에서 제외한다.
+-->
+<full-backup-content>
+    <!-- 인증 토큰 (DataStore, AES-GCM 암호문). 다른 단말로 복원돼도 AndroidKeyStore 키는
+         따라가지 않아 복호화 자체가 불가하며, 자격증명은 애초에 백업 대상이 아니다. -->
+    <exclude
+        domain="file"
+        path="datastore" />
+    <!-- 마스터 캐시(User/Card/Permission) + 오프라인 큐 Room DB.
+         복원 시 stale 출입권한이 되살아날 수 있어 제외. -->
+    <exclude
+        domain="database"
+        path="access.db" />
+</full-backup-content>

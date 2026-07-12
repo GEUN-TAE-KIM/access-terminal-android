@@ -1,0 +1,19 @@
+<resources>
+    <string name="register_instruction">카드를 등록할 사용자의 사번을 입력하세요</string>
+    <string name="register_field_employee_code">사번 (예: EMP001)</string>
+    <string name="register_button_scan">카드 스캔</string>
+    <string name="register_dialog_title_scanning">카드를 대주세요</string>
+    <string name="register_dialog_title_registering">카드 등록 중</string>
+    <string name="register_dialog_body_scanning">등록할 NFC 카드를 단말에 대주세요.</string>
+    <string name="register_dialog_body_registering">서버에 카드를 등록하고 있습니다.</string>
+
+    <!-- Error mapper — register 화면 한정 메시지 -->
+    <string name="register_error_nfc_not_supported_message">이 기기는 NFC를 지원하지 않아 카드를 등록할 수 없습니다.</string>
+    <string name="register_error_nfc_unreadable_message">이 카드 형식은 등록할 수 없습니다. 사원증을 확인해 주세요.</string>
+    <string name="register_error_card_failure_title">카드 등록 실패</string>
+
+    <!-- Success 다이얼로그 (action=None 으로 닫기만 가능) -->
+    <string name="register_success_title">카드 등록 완료</string>
+    <!-- %1$s = user name, %2$s = employee code, %3$s = card UID -->
+    <string name="register_success_message">%1$s (%2$s) 에 카드가 등록되었습니다.\nUID %3$s</string>
+</resources>

@@ -1,0 +1,144 @@
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+build/
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+# =============================================================================
+# 보안 파일 (절대 커밋 금지)
+# =============================================================================
+
+# Android 서명 파일
+*.jks
+*.keystore
+*.p12
+*.pfx
+*.pem
+*.key
+keystore.properties
+signing.properties
+release/
+
+# 환경변수·시크릿
+.env
+.env.local
+.env.*.local
+secrets.properties
+
+# 인증서
+*.crt
+*.cer
+*.csr
+
+# Firebase·클라우드 자격증명
+google-services.json
+firebase-adminsdk-*.json
+*credentials*.json
+
+# JWT·암호화 키
+**/jwt-secret*
+**/jwt.key
+**/encryption-key*
+
+# 디버그 덤프 (힙 덤프·네트워크 캡처 — 토큰이 담길 수 있음)
+*.hprof
+*.har
+
+
+# =============================================================================
+# Android 추가 (자동 생성에서 빠진 것들)
+# =============================================================================
+
+# KSP·KAPT 캐시 (Hilt 사용 시 생성)
+.kapt/
+.ksp/
+
+# Kotlin
+.kotlin/
+*.kotlin_module
+
+# 빌드 산출물
+*.apk
+*.aab
+*.ap_
+*.dex
+
+
+# =============================================================================
+# IDE (자동 생성보다 빡세게)
+# =============================================================================
+
+# .idea 전체 무시
+.idea/
+
+# JetBrains Fleet
+.fleet/
+
+# VSCode (보조 사용 시)
+.vscode/
+
+
+# =============================================================================
+# OS 잡파일
+# =============================================================================
+
+# macOS
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+ehthumbs.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.directory
+
+
+# =============================================================================
+# 에디터·로그·임시
+# =============================================================================
+
+# Vim
+*.swp
+*.swo
+
+# 로그
+*.log
+logs/
+
+# 백업
+*.bak
+*.backup
+
+# 압축 파일
+*.zip
+*.tar.gz
+
+
+# =============================================================================
+# 개인 메모·스크래치
+# =============================================================================
+
+TODO.md
+NOTES.md
+scratch/
+.scratch/
+draft/
+*-draft.md

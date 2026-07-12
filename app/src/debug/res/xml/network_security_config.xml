@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Debug 빌드 전용 cleartext (HTTP) 허용 설정.
+
+    release 빌드는 본 파일을 포함하지 않으므로 Android 9+ 기본값(cleartext 차단)이 유지된다.
+    즉 보안 기본값은 그대로, 로컬 시연 편의만 debug 에 분리.
+
+    실기기 시연을 위해 PC LAN IP 로 호출하려면 해당 IP 를 <domain> 항목에 추가하면 된다.
+    예) <domain includeSubdomains="true">192.168.0.100</domain>
+-->
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <!-- Android 에뮬레이터에서 호스트 머신 localhost 로 매핑되는 약속된 IP -->
+        <domain includeSubdomains="true">10.0.2.2</domain>
+        <!-- 실기기에서 host loopback 디버깅 시 -->
+        <domain includeSubdomains="true">localhost</domain>
+        <domain includeSubdomains="true">127.0.0.1</domain>
+        <!-- 실기기를 같은 Wi-Fi 의 PC LAN IP 로 붙일 때 아래에 추가
+        <domain includeSubdomains="true">192.168.0.100</domain>
+        -->
+    </domain-config>
+</network-security-config>
