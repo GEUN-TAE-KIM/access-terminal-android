@@ -8,7 +8,7 @@ import com.gtkim.mobile_access_control.core.common.result.Outcome
 import javax.inject.Inject
 
 /**
- * 4종 Reader 의 Strategy 디스패처 — 통합 진입점.
+ * Reader 전략(FeliCa · IsoDep 2종)의 Strategy 디스패처 — 통합 진입점.
  * Tag 가 들어오면 첫 supports() 매칭 Reader 에 위임한다.
  */
 class NfcCardService @Inject constructor(
